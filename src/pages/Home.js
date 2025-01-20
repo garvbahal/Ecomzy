@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import Spinner from "../components/Spinner";
+import Product from "../components/Product";
 
 const Home = () => {
   const [loading, setLoading] = useState(false);
@@ -9,8 +11,11 @@ const Home = () => {
     setLoading(true);
     try {
       const res = await fetch(API_URL);
+      if (!res.ok) {
+        throw new Error("Error is here");
+      }
       const data = await res.json();
-      setPosts([]);
+      setPosts(data);
     } catch (err) {
       console.log("Error is here");
       setPosts([]);
@@ -24,7 +29,19 @@ const Home = () => {
 
   return (
     <div>
-      
+      {loading ? (
+        <Spinner />
+      ) : posts.length > 0 ? (
+        <div>
+          {posts.map((post) => (
+            <Product key={post.id} post={post} />
+          ))}
+        </div>
+      ) : (
+        <div>
+          <p>No Data Found</p>
+        </div>
+      )}
     </div>
   );
 };
