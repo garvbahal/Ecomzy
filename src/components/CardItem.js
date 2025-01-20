@@ -1,7 +1,18 @@
 import React from "react";
 import { MdDelete } from "react-icons/md";
+import { useDispatch, useSelector } from "react-redux";
+import { remove } from "../redux/slices/CartSlice";
+import toast from "react-hot-toast";
 
 const CardItem = ({ item, itemIndex }) => {
+  const { cart } = useSelector((state) => state);
+  const dispatch = useDispatch();
+
+  function removeFromCart() {
+    dispatch(remove(item.id));
+    toast.error("Item Removed");
+  }
+
   return (
     <div>
       <div>
@@ -12,7 +23,7 @@ const CardItem = ({ item, itemIndex }) => {
         <p>{item.description}</p>
         <div>
           <p>{item.price}</p>
-          <div>
+          <div onClick={removeFromCart}>
             <MdDelete />
           </div>
         </div>
