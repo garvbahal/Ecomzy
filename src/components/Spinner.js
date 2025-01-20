@@ -3,7 +3,7 @@ import "./Spinner.css";
 
 const Spinner = () => {
   return (
-    <div>
+    <div className="w-[100vw] h-[80vh] flex justify-center items-center">
       <div class="loader">
         <div class="truckWrapper">
           <div class="truckBody">
