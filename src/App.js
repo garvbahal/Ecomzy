@@ -1,13 +1,13 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Navbar from "./components/Navbar";
-import Cart from "./pages/Cart";
-import Home from "./pages/Home";
+import Cart from "./pages/CartPage";
+import Home from "./pages/HomePage";
 
 function App() {
   return (
     <div>
-      <div>
+      <div className="bg-slate-900">
         <Navbar />
       </div>
 
